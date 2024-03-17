@@ -1,0 +1,6 @@
+name: test
+author: MrManHD
+version: 1.0.1
+api-version: 1.19
+
+main: world.avionik.event.requirement.manager.plugin.SpigotPlugin
