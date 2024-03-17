@@ -29,7 +29,9 @@ In this project, you can register Bukkit listeners and add one or more requireme
 repositories {
     maven { url = 'https://maven.pkg.github.com/avionik-world/event-requirement-manager' }
 }
+```
 
+```groovy
 dependencies {
     compileOnly 'world.avionik:event-requirement-manager:1.0.1'
 }
