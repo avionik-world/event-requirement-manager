@@ -38,14 +38,14 @@ dependencies {
 ## How to register a Listener with some requirements
 There is an [EventRequirementHandler](https://github.com/avionik-world/event-requirement-manager/blob/master/src/main/kotlin/world/avionik/event/requirement/manager/EventRequirementHandler.kt) class. You can implement this class in your code to have a more elegant way of creating requirements.
 
-### Register a requirement 
+#### Register a requirement 
 ``` kotlin
 Bukkit.getPluginManager().registerEvents(PlayerMoveListener(), javaPlugin) {
     it is PlayerEvent // Here you must return a Boolean that specifies whether you want to call the event or not.
 }
 ```
 
-### Register multiple requirements at once
+#### Register multiple requirements at once
 ``` kotlin
 Bukkit.getPluginManager().registerEvents(
     PlayerMoveListener(), // The listener class to register
@@ -55,7 +55,7 @@ Bukkit.getPluginManager().registerEvents(
 )
 ```
 
-### Register a requirement without Kotlin extensions
+#### Register a requirement without Kotlin extensions
 ``` kotlin
 EventRequirement.registerEvents(
     PlayerMoveListener(), // The listener class to register
