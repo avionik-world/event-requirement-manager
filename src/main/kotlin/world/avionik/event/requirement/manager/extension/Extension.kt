@@ -10,10 +10,22 @@ import world.avionik.event.requirement.manager.EventRequirementHandler
  * @author Niklas Nieberler
  */
 
+/**
+ * Registers an event with one or more requirements
+ * @param listener to register
+ * @param plugin where this listener should be registered
+ * @param eventRequirement requirement of this event
+ */
 fun PluginManager.registerEvents(listener: Listener, plugin: Plugin, eventRequirement: EventRequirementHandler) {
     EventRequirement.registerEvents(listener, plugin, eventRequirement)
 }
 
-fun PluginManager.registerEvents(listener: Listener, plugin: Plugin, vararg eventRequirement: EventRequirementHandler) {
-    EventRequirement.registerEvents(listener, plugin, *eventRequirement)
+/**
+ * Registers an event with one or more requirements
+ * @param listener to register
+ * @param plugin where this listener should be registered
+ * @param eventRequirements requirements of this event
+ */
+fun PluginManager.registerEvents(listener: Listener, plugin: Plugin, vararg eventRequirements: EventRequirementHandler) {
+    EventRequirement.registerEvents(listener, plugin, *eventRequirements)
 }
