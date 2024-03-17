@@ -36,7 +36,6 @@ dependencies {
 ```
 
 ## How to register a Listener with some requirements
-There is an [EventRequirementHandler](https://github.com/avionik-world/event-requirement-manager/blob/master/src/main/kotlin/world/avionik/event/requirement/manager/EventRequirementHandler.kt) class. You can implement this class in your code to have a more elegant way of creating requirements.
 
 #### Register a requirement 
 ``` kotlin
@@ -66,3 +65,24 @@ EventRequirement.registerEvents(
 ```
 
 Whenever a listener is registered, this triggers a Bukkit event called [ListenerRegisterEvent](https://github.com/avionik-world/event-requirement-manager/blob/master/src/main/kotlin/world/avionik/event/requirement/manager/event/ListenerRegisterEvent.kt). This event contains the registered listener.
+
+## How to use the EventRequirementHandler
+There is an [EventRequirementHandler](https://github.com/avionik-world/event-requirement-manager/blob/master/src/main/kotlin/world/avionik/event/requirement/manager/EventRequirementHandler.kt) class. You can implement this class in your code to have a more elegant way of creating requirements.
+
+#### Here is an example of how to use the EventRequirementHandler
+```kotlin
+class FirstEventRequirementHandler : EventRequirementHandler {
+
+    /**
+     * This method is executed when an event with this requirement is called.
+     * @param event that is about to be executed
+     * @return whether this event should be executed or not
+     */
+    override fun execute(event: Event): Boolean {
+        if (event !is PlayerEvent)
+            return false
+        return event.player.gameMode == GameMode.SPECTATOR
+    }
+
+}
+```
