@@ -20,3 +20,13 @@ Bukkit.getPluginManager().registerEvents(
     SecondEventRequirementHandler()
 )
 ```
+
+##### Register a requirement without Kotlin extensions
+``` kotlin
+EventRequirement.registerEvents(
+    PlayerMoveListener(), // The listener class to register
+    javaPlugin,
+    FirstEventRequirementHandler(), // Here you can add all requerements
+    SecondEventRequirementHandler()
+)
+```
