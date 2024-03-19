@@ -19,7 +19,7 @@ dependencies {
     testCompileOnly("io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT")
 }
 
-publishing {
+configure<PublishingExtension> {
     repositories {
         maven {
             name = "GitHubPackages"
