@@ -1,6 +1,6 @@
 plugins {
     kotlin("jvm") version "1.9.22"
-    `maven-publish`
+    alias(libs.plugins.sonatypeCentralPortalPublisher)
 }
 
 group = "world.avionik"
@@ -19,20 +19,35 @@ dependencies {
     testCompileOnly("io.papermc.paper:paper-api:1.20.4-R0.1-SNAPSHOT")
 }
 
-configure<PublishingExtension> {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/avionik-world/event-requirement-manager")
-            credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+signing {
+    useGpgCmd()
+    sign(configurations.archives.get())
+}
+
+centralPortal {
+    username = project.findProperty("sonatypeUsername") as String
+    password = project.findProperty("sonatypePassword") as String
+
+    pom {
+        name.set("Event Requirement Manager")
+        description.set("Register Bukkit listeners and add one or more requirements")
+        url.set("https://github.com/avionik-world/event-requirement-manager")
+
+        developers {
+            developer {
+                id.set("niklasnieberler")
+                email.set("admin@avionik.world")
             }
         }
-    }
-    publications {
-        register<MavenPublication>("gpr") {
-            from(components["java"])
+        licenses {
+            license {
+                name.set("Apache-2.0")
+                url.set("https://www.apache.org/licenses/LICENSE-2.0.txt")
+            }
+        }
+        scm {
+            url.set("https://github.com/avionik-world/event-requirement-manager.git")
+            connection.set("git:git@github.com:avionik-world/event-requirement-manager.git")
         }
     }
 }

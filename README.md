@@ -5,15 +5,6 @@ In this project, you can register Bukkit listeners and add one or more requireme
 
 ### Maven
 ```xml
-<repositories>
-  <repository>
-     <id>github</id>
-     <url>https://maven.pkg.github.com/avionik-world/event-requirement-manager</url>
-   </repository>
-</repositories>
-```
-
-```xml
 <dependencies>
  <dependency>
     <groupId>world.avionik</groupId>
@@ -25,12 +16,6 @@ In this project, you can register Bukkit listeners and add one or more requireme
 ```
 
 ### Gradle
-```groovy
-repositories {
-    maven { url = 'https://maven.pkg.github.com/avionik-world/event-requirement-manager' }
-}
-```
-
 ```groovy
 dependencies {
     compileOnly 'world.avionik:event-requirement-manager:1.0.1'
