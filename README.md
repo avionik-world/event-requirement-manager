@@ -9,7 +9,7 @@ In this project, you can register Bukkit listeners and add one or more requireme
  <dependency>
     <groupId>world.avionik</groupId>
     <artifactId>event-requirement-manager</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <scope>provided</scope>
   </dependency>
 </dependencies>
@@ -18,7 +18,7 @@ In this project, you can register Bukkit listeners and add one or more requireme
 ### Gradle
 ```groovy
 dependencies {
-    compileOnly 'world.avionik:event-requirement-manager:1.0.1'
+    compileOnly 'world.avionik:event-requirement-manager:1.0.2'
 }
 ```
 
@@ -52,6 +52,37 @@ EventRequirement.registerEvents(
 ```
 
 Whenever a listener is registered, this triggers a Bukkit event called [ListenerRegisterEvent](https://github.com/avionik-world/event-requirement-manager/blob/master/src/main/kotlin/world/avionik/event/requirement/manager/event/ListenerRegisterEvent.kt). This event contains the registered listener.
+
+## How to register a cancelled Event with some requirements
+You can use these methods to automatically cancel events. Of course, you can also set a requerement here.
+
+#### Register a cancelled event 
+``` kotlin
+Bukkit.getPluginManager().registerCancelledEvent<PlayerMoveEvent>(EventPriority.HIGHEST, javaPlugin) { // PlayerMoveEvent is the event that is cancelled 
+    it is Cancelled // Here you must return a Boolean that specifies whether you want to call the event or not.
+}
+```
+
+#### Register multiple requirements at once
+``` kotlin
+Bukkit.getPluginManager().registerCancelledEvent<PlayerMoveEvent>( // PlayerMoveEvent is the event that is cancelled 
+    EventPriority.HIGHEST,
+    javaPlugin,
+    FirstEventRequirementHandler(), // Here you can add all requerements
+    SecondEventRequirementHandler()
+)
+```
+
+#### Register a requirement without Kotlin extensions
+``` kotlin
+EventRequirement.registerCancelledEvent(
+    PlayerMoveEvent::class.java, // The event to cancel
+    EventPriority.HIGHEST,
+    javaPlugin,
+    FirstEventRequirementHandler(), // Here you can add all requerements
+    SecondEventRequirementHandler()
+)
+```
 
 ## How to use the EventRequirementHandler
 There is an [EventRequirementHandler](https://github.com/avionik-world/event-requirement-manager/blob/master/src/main/kotlin/world/avionik/event/requirement/manager/EventRequirementHandler.kt) class. You can implement this class in your code to have a more elegant way of creating requirements.
